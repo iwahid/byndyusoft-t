@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 10px;
+}
+body {
+  background-color: white;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto; 
+  padding: 0 30px; 
+  text-align: justify;
+  
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1;
+}
+
+/* TODO: подумать над ссылками. Если они будут только в статье, то можно задать общий стиль для всех них */
+a {
+  
+  color: $color-accent;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* TODO: возможно, для скрытия комментария буду использовать визуальное сокрытие. Либо условный рендер */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

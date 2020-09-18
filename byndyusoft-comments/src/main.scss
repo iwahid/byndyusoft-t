@@ -1,0 +1,32 @@
+/* соблюдая порядок подключения стилей */
+
+/* normalize */
+@import "./components/commonStyle/normalize.scss";
+
+/* переменные */
+@import "./components/commonStyle/variable.scss";
+
+/* общие стили для всего проекта */
+@import "./components/commonStyle/base-style.scss";
+
+
+/* ================================ */
+/* компоненты */
+
+/* статья */
+@import "./components/article/article.scss";
+
+/* список комментариев */
+@import "./components/comments/commentsList/commentsList.scss";
+
+/* отдельный комментарий */
+@import "./components/comments/commentItem/commentItem.scss";
+
+/* рейтинг комментария */
+@import "./components/comments/rating/rating.scss";
+
+
+/* UI */
+/* @import "./blocks/ui/button.scss"; */
+
+

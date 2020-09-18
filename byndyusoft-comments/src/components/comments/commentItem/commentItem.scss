@@ -1,0 +1,52 @@
+.comment {
+  display: flex;
+  margin-bottom: 5rem;
+  &__author-avatar {
+    height: 10rem;
+    min-width: 10rem;
+    background-color: gray;
+    margin-right: 2rem;
+  }
+
+  &__body {
+  }
+
+  &__top {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1.6rem;
+  }
+  &__author {
+    display: block;
+  }
+  &__publication-date {
+    /* NOTE: часто встречающийся элемент. Можно было бы унифицировать его, если бы он использовался в нескольких разных элементах. У даты публикации статьи и даты публикации комментария слабая семантическая связь. По этому их можно разделить в плане стилей */
+    display: inline-block;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: gray;
+    margin: 0 2rem;
+  }
+
+  &__rating {
+    
+  }
+
+  &__reply-link {
+    /* NOTE: переопределяю стили для кнопки как для ссылки специально. Потому что должна использоваться кнопка, а не ссылка имитирующая поведение кнопки. */
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    color: $color-accent;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__comment-text {
+
+  }
+}
