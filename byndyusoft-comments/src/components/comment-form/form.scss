@@ -1,0 +1,53 @@
+.add-comment {
+  position: relative;
+  width: 100%;
+  border: 1px solid black;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  &__title {
+    position: absolute;
+    top: -1rem;
+    background-color: white;
+    padding: 0 0.5rem; /* "отделить" заголовок от рамки полями слева и справа */
+  }
+
+  &__field {
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__label {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 1rem;
+  }
+
+  /* адаптив для узких экранов */
+  &__textarea {
+    width: 60%;
+    resize: none;
+  }
+
+  @media (max-width: 640px) {
+    &__textarea {
+      width: 100%;
+      resize: none;
+    }
+  }
+
+  &__submit {
+    margin-left: 20rem;
+    color: white;
+    background-color: $color-accent;
+
+    border: 1px solid gray;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+  }
+}
