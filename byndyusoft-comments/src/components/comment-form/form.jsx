@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 function Form(props) {
 
-  let [content, setContent] = useState({ name: "", email: "", text: "" })
+  /* хук комментария */
+  let [content, setContent] = useState({ name: "", email: "", text: "", publicationTime: "", rating: 0 })
   /* TODO: при первом рендере поднимать данные о состоянии, для первого рендеринга списка комментариев */
 
   /* TODO:
@@ -12,75 +13,32 @@ function Form(props) {
     3. не забыть про пропсы и создание отдельного объекта комментария
     4. добавить время публикации*/
 
-  let tempDate = new Date
   /* TODO: привязать проверку на валидность перед отправкой комментария */
   function handleChange(event, key) {
     let temp = { ...content }
     temp[key] = event.target.value
+
+    /* запись о времени публикации комментария */
+    temp["publicationTime"] = Date.now() /* NOTE: понять, почему значение времени не сохраняется при отправке формы */
+    temp["id"] = function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b}() /* уникальный id */
+    temp["rating"] = 0
+    
     setContent({ ...temp })
     console.log(content)
-    /*  setState({...state, [property]: value}) */
   }
 
   /* FIXME: очистить поля после отправки комментария */
   function handleSubmit(event) {
+    let temp = { ...content }
+    setContent({ ...temp })
+
+
+    console.log("Данные нового комментария: ", content)
     props.update(content)
     event.preventDefault();
-
     /* очистка формы. Можно было бы вынести в отдеьную функцию и циклом пройдя по всем ключам объекта состояния присвоить им "". Но для текущей задачи достаточно очистки в одну строку */
-    setContent({ name: "", email: "", text: "" })
-    calcCommentDate(tempDate)
+    setContent({ name: "", email: "", text: "", publicationTime: "" })
   }
-
-
-
-  /* компонент подсчёта времени, пройденного с момента публикации */
-  function calcCommentDate(time) {
-
-    let timePassed = Date.now() - time
-
-    let msInMinute = 60 * 1000
-    let msInHour = 60 * 60 * 1000
-    let msInDay = 60 * 60 * 1000 * 24
-
-    let result
-
-    if (timePassed > msInDay) {
-      result = correctName(Math.round(timePassed / 60 / 60 / 1000 / 24), ["День", "Дня", "Дней"])
-      console.log("Прошло: ", result)
-    } else if (timePassed > msInHour) {
-      result = correctName(Math.round(timePassed / 60 / 60 / 1000), ["Час", "Часа", "Часов"])
-      console.log("Прошло: ", result)
-    } else if (timePassed > msInMinute) {
-      result = correctName(Math.round(timePassed / 60 / 1000), ["Минута", "Минуты", "Минут"])
-      console.log("Прошло: ", result)
-    } else {
-      result = correctName(Math.round(timePassed / 1000), ["Секунда", "Секунды", "Секунд"])
-      console.log("Прошло: ", result)
-    }
-
-    /* TODO: вернуть ссылку на объект с временем и корректным текстом.*/
-
-    function correctName(timePassed, titlesArr) {
-
-      let rest = timePassed % 100
-      let result = { timePassed }
-
-      if (5 <= rest && rest <= 20) {
-        result.rest = titlesArr[2]
-      } else if (1 < (rest % 10) && (rest % 10) < 5) {
-        result.rest = titlesArr[1]
-      } else if (1 == (rest % 10)) {
-        result.rest = titlesArr[0]
-      } else {
-        result.rest = titlesArr[2] /* на случай, когда количество секунд окажется кратным 10 */
-      }
-      return result
-
-    }
-
-  }
-
 
   return (
     <form className="add-comment" onSubmit={(event) => handleSubmit(event)}>
