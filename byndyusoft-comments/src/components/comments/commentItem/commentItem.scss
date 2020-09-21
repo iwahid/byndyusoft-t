@@ -9,6 +9,7 @@
   }
 
   &__body {
+    width: 100%;
   }
 
   &__top {
@@ -32,8 +33,20 @@
     
   }
 
-  &__reply-link {
+  &__reply-link{
     /* NOTE: переопределяю стили для кнопки как для ссылки специально. Потому что должна использоваться кнопка, а не ссылка имитирующая поведение кнопки. */
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: $color-accent;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &__show-text {
+   /* FIXME: одинаковые стили для нескольких элементов. Починить */
     margin-left: auto;
     background-color: transparent;
     border: none;

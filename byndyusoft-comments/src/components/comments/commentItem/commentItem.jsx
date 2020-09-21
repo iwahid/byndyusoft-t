@@ -1,8 +1,17 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import Rating from '../rating/rating'
 import Avatar from './assets/avatar.png'
 
 function CommentItem({ comment, updateCommentRating }) {
+
+  let [commentVisisble, setCommentVisisble] = useState(true)
+
+  useEffect(() => {
+    ((-10 < comment.rating)?setCommentVisisble(true):setCommentVisisble(false))
+   
+  }, [comment.rating])
+
 
 
   /* Функция подсчёта времени, пройденного с момента публикации 
@@ -70,15 +79,16 @@ function CommentItem({ comment, updateCommentRating }) {
             {/* TODO:  данные рейтинга*/}
 
             <Rating
-            rating={comment.rating}
-            commentId={comment.id}
-            updateCommentRating={updateCommentRating} />
+              rating={comment.rating}
+              commentId={comment.id}
+              updateCommentRating={updateCommentRating} />
           </div>
 
           <button className="comment__reply-link" type="button" >Ответить</button>
 
         </div>
-        <p className="comment-text">{comment.text}</p>
+        {commentVisisble ? <p className="comment-text">{comment.text}</p>: <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button> }
+
         {/* TODO: возможно, здесь нужно будет реализовать контейнер для ответов оставленных на этот коммент */}
       </div>
 
