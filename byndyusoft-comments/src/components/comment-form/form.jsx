@@ -5,7 +5,6 @@ function Form(props) {
 
   /* хук комментария */
   let [content, setContent] = useState({ name: "", email: "", text: "", publicationTime: "", rating: 0 })
-  /* TODO: при первом рендере поднимать данные о состоянии, для первого рендеринга списка комментариев */
 
   /* TODO:
     1. в объекте состояния добавить свойства для текста комментария
@@ -22,7 +21,7 @@ function Form(props) {
     temp["publicationTime"] = Date.now() /* NOTE: понять, почему значение времени не сохраняется при отправке формы */
     temp["id"] = function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b}() /* уникальный id */
     temp["rating"] = 0
-    
+   /*  temp['parrent'] =  */
     setContent({ ...temp })
     console.log(content)
   }

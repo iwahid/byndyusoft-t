@@ -9,18 +9,136 @@ import CommentsList from './components/comments/commentsList/commentsList';
 
 function App() {
 
-  let [comments, setComments] = useState([{ id: 0, name: "", email: "", text: "wef", publicationTime: 1600616401986, rating: 0 }])
+  let [comments, setComments] = useState([{
+    id: 1000,
+    name: "Вася",
+    email: "email_1",
+    text: "Beatae recusandae nesciunt dolorum et, unde blanditiis, itaque voluptatem distinctio id sapiente deserunt consectetur exercitationem quo tempora vitae, est saepe nisi aliquid sunt magni repellendus voluptatum facilis ipsum voluptatibus. Magni, harum! Cumque, ea ipsa consequatur exercitationem, illum eaque velit at officia esse aperiam consectetur? ",
+    publicationTime: 1600616401986,
+    rating: 5,
+    reply: [
+      {
+        id: 1,
+        name: "name_1-1",
+        email: "email_1-1",
+        text: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, ad explicabo? Recusandae porro impedit temporibus, perspiciatis animi ratione nesciunt aperiam libero vitae. Voluptatem suscipit provident cumque adipisci inventore commodi aspernatur. Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatummodi aspernatur. Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur!",
+        publicationTime: 1600616401986,
+        rating: 3,
+        reply: [
+          {
+            id: 2,
+            name: "",
+            email: "",
+            text: "Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur! Nostrum quibusdam animi quo officia, soluta iste recusandae similique ipsum suscipit natus tempora ea rem exercitationem amet doloremque sint nulla nisi eum debitis? Iste in autem nemo, animi sed laudant",
+            publicationTime: 1600616411986,
+            rating: 7
+          }
+        ]
+      },
+      {
+        id: 3,
+        name: "name_1-2",
+        email: "email_1-2",
+        text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus deleniti natus doloribus run deserunt, ea quos et explicabo fugit impedit cumque voluptatem amet commodi a iste, quod suscipit alias minus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. ",
+        publicationTime: 1600616401986,
+        rating: 2,
+        reply: [
+          {
+            id: 4,
+            name: "name_1-2-1",
+            email: "email_1-2-1",
+            text: "Numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur! Nostrum quibusdam animi quo officia, soluta iste recusandae similique ipsum suscipit natus temficia, soluta iste recusandae similique ipsum suscipit natus tempora ea rem exercitationem amet doloremque sint nulla nisi eum debitis? Iste in autem nemo, animi sed laudant doloremque",
+            publicationTime: 1600616401986,
+            rating: 7,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 7,
+    name: "name_2",
+    email: "email_2",
+    text: "utem nemo, animi sed laudant Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ullam eum et sapiente alias sint dolor. Veritatis ad commodi facere accusantium sunt ex porro, molestiae, praesentium eaque ducimus velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci fuga doloribus tenetur blanditiis, ipsam quas tempo",
+    publicationTime: 1600616401986,
+    rating: 5,
+    reply: [
+      {
+        id: 8,
+        name: "name_2-1",
+        email: "email_2-1",
+        text: "qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat corrupti.",
+        publicationTime: 1600616401986,
+        rating: 5,
+        reply: [
+          {
+            id: 9,
+            name: "name_2-1-1",
+            email: "email_2-1-1",
+            text: "inus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat cor",
+            publicationTime: 1600616401986,
+            rating: 9,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 445,
+    name: "",
+    email: "",
+    text: "nimi sed laudant Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ullam eum et sapiente alias sint dolor. Veritatis ad commodi facere accusantium sunt ex porro, molestiae, praesentium eaque ducimus velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci fuga doloribus t",
+    publicationTime: 1600616401986,
+    rating: 0,
+  },
+  {
+    id: 4e45,
+    name: "",
+    email: "",
+    text: "inus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat cor",
+    publicationTime: 1600616401986,
+    rating: 0,
+  }])
+
+  /* хук - ссылка на тот комментарий, к которому будет написан ответ */
+  let [replyParent, setReplyParent] = useState(0)
+
+  /* колбек функция, передаваемая в кнопку "ответить" */
+  function getReplayParent(parentId) {
+    console.log("Id родительского элемента: ", parentId)
+    setReplyParent(parentId)
+  }
 
   /* Обновление списка комментариев для статьи */
   function updateComments(comment) {
-    console.log("В стейте сохранён новый комментарий: ", comment)
-    console.log("Список комментариев, сохранённых в стейте: ", comments)
 
-    let temp = []
-    temp = [...comments]
-    temp.push(comment)
+    let temp = [...comments]
+
+    if (replyParent == 0) {
+      temp.push(comment)
+      setComments([...temp])
+      return
+    }
+
+    updateCommentReply(replyParent)
+
+    function updateCommentReply(replyParent) {
+      (function func(temp) {
+        for (let elem of temp) {
+          if (elem["id"] == replyParent) {
+            if (!elem["reply"])
+              elem["reply"] = [] /* чекаю существуют ли уже ответы у текущего комментария. Если нет, то формирую список */
+            elem["reply"].push(comment)
+          } else if (elem['reply']) {
+            func(elem['reply']);
+          }
+        }
+      })(temp);
+    }
+
     setComments([...temp])
   }
+
 
   /* FIXME: добится автоматического обновления пройденного времени для комментария, с момента его публикации */
 
@@ -33,11 +151,23 @@ function App() {
     /* создаю копию стейта с комментариями */
     let temp = [...comments]
 
-    for (let i = 0; i < temp.length; i++) {
-      if (temp[i]["id"] == commentId){
-        console.log("Найдено!",commentId ) 
-        temp[i]["rating"] = (sign?temp[i]["rating"]+1: temp[i]["rating"]-1 ) 
-      }
+    updateCommentRating(commentId, sign)
+
+    function updateCommentRating(commentId, sign) {
+
+      (function func(temp) {
+
+        for (let elem of temp) {
+          if (elem["id"] == commentId) {
+            elem["rating"] += sign ? 1 : -1;
+            console.log(`Рейтинг комментария ${elem} изменился: ${elem["rating"]}`);
+          } else if (elem['reply']) {
+            console.log(`Рейтинг комментария не изменился`);
+            func(elem['reply']);
+          }
+        }
+
+      })(temp);
     }
     setComments(temp)
   }
@@ -51,10 +181,12 @@ function App() {
         <Form
           update={updateComments}
         />
-        
+
         <CommentsList
           comments={comments}
-          updateCommentRating={updateCommentRating}></CommentsList>
+          updateCommentRating={updateCommentRating}
+          getReplayParent={getReplayParent}
+        ></CommentsList>
       </div>
 
 

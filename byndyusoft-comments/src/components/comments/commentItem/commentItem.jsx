@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react'
 import Rating from '../rating/rating'
 import Avatar from './assets/avatar.png'
 
-function CommentItem({ comment, updateCommentRating }) {
+function CommentItem(props) {
 
+  let { comment, updateCommentRating, getReplayParent } = props
   let [commentVisisble, setCommentVisisble] = useState(true)
 
   useEffect(() => {
-    ((-10 < comment.rating)?setCommentVisisble(true):setCommentVisisble(false))
-   
-  }, [comment.rating])
+    ((-10 < comment.rating) ? setCommentVisisble(true) : setCommentVisisble(false))
 
+  }, [comment.rating])
 
 
   /* Функция подсчёта времени, пройденного с момента публикации 
@@ -31,16 +31,16 @@ function CommentItem({ comment, updateCommentRating }) {
     /* FIXME: удалить логи от отладки */
     if (timePassed > msInDay) {
       result = correctName(Math.round(timePassed / 60 / 60 / 1000 / 24), ["День", "Дня", "Дней"])
-      console.log("Прошло: ", result)
+      /*  console.log("Прошло: ", result) */
     } else if (timePassed > msInHour) {
       result = correctName(Math.round(timePassed / 60 / 60 / 1000), ["Час", "Часа", "Часов"])
-      console.log("Прошло: ", result)
+      /* console.log("Прошло: ", result) */
     } else if (timePassed > msInMinute) {
       result = correctName(Math.round(timePassed / 60 / 1000), ["Минуту", "Минуты", "Минут"])
-      console.log("Прошло: ", result)
+      /* console.log("Прошло: ", result) */
     } else {
       result = correctName(Math.round(timePassed / 1000), ["Секунду", "Секунды", "Секунд"])
-      console.log("Прошло: ", result)
+      /*  console.log("Прошло: ", result) */
     }
 
     /* TODO: вернуть ссылку на объект с временем и корректным текстом.*/
@@ -64,6 +64,8 @@ function CommentItem({ comment, updateCommentRating }) {
     }
     return `${result.timePassed} ${result.rest} назад` /* значение, подставляемое в поле даты публикации комментария */
   }
+  /* 
+    getReplayParent(2) */
 
   return (
     <div className={"comment"}>
@@ -72,7 +74,6 @@ function CommentItem({ comment, updateCommentRating }) {
       </div>
       <div className="comment__body">
         <div className="comment__top">
-
           <a href="#" className="comment__author">{comment.name}</a>
           <span className="comment__publication-date">{calcCommentDate(comment.publicationTime)}</span>
           <div className="comment__rating">
@@ -84,12 +85,29 @@ function CommentItem({ comment, updateCommentRating }) {
               updateCommentRating={updateCommentRating} />
           </div>
 
-          <button className="comment__reply-link" type="button" >Ответить</button>
+          <button className="comment__reply-link" type="button" onClick={() => getReplayParent(comment.id)} >Ответить</button>
+
+
 
         </div>
-        {commentVisisble ? <p className="comment-text">{comment.text}</p>: <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button> }
+
+
+        {commentVisisble ? <p className="comment__text">{comment.text}</p> : <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button>}
+
+        {/* рекурсивный рендер ответов на комментарий */}
+        {comment.reply && comment.reply.length
+          ? comment.reply.map((comment) =>
+            <div className="comment__reply">
+              <CommentItem
+                comment={comment}
+                updateCommentRating={updateCommentRating}
+                getReplayParent={getReplayParent} />
+
+            </div>)
+          : ""}
 
         {/* TODO: возможно, здесь нужно будет реализовать контейнер для ответов оставленных на этот коммент */}
+
       </div>
 
     </div>
