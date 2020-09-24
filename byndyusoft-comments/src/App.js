@@ -9,7 +9,7 @@ import CommentsList from './components/comments/commentsList/commentsList';
 function App() {
 
   let [comments, setComments] = useState([{
-    id: 1000,
+    id: "66326385-62c0-404f-ac6a-3d03d478801a",
     name: "Вася",
     email: "email_1",
     text: "Beatae recusandae nesciunt dolorum et, unde blanditiis, itaque voluptatem distinctio id sapiente deserunt consectetur exercitationem quo tempora vitae, est saepe nisi aliquid sunt magni repellendus voluptatum facilis ipsum voluptatibus. Magni, harum! Cumque, ea ipsa consequatur exercitationem, illum eaque velit at officia esse aperiam consectetur? ",
@@ -18,7 +18,7 @@ function App() {
     depthOfAnswers: 1,
     reply: [
       {
-        id: 1,
+        id: "b8b28242-456b-47d5-bf7b-c9599a880611",
         name: "name_1-1",
         email: "email_1-1",
         text: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, ad explicabo? Recusandae porro impedit temporibus, perspiciatis animi ratione nesciunt aperiam libero vitae. Voluptatem suscipit provident cumque adipisci inventore commodi aspernatur. Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatummodi aspernatur. Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur!",
@@ -27,7 +27,7 @@ function App() {
         depthOfAnswers: 2,
         reply: [
           {
-            id: 2,
+            id: "7ae3100f-a255-4a79-90c8-6205bd49cfa2",
             name: "",
             email: "",
             text: "Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur! Nostrum quibusdam animi quo officia, soluta iste recusandae similique ipsum suscipit natus tempora ea rem exercitationem amet doloremque sint nulla nisi eum debitis? Iste in autem nemo, animi sed laudant",
@@ -38,7 +38,7 @@ function App() {
         ]
       },
       {
-        id: 3,
+        id: "841f6f9b-e797-441a-b472-823332fc2994",
         name: "name_1-2",
         email: "email_1-2",
         text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus deleniti natus doloribus run deserunt, ea quos et explicabo fugit impedit cumque voluptatem amet commodi a iste, quod suscipit alias minus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. ",
@@ -47,7 +47,7 @@ function App() {
         depthOfAnswers: 2,
         reply: [
           {
-            id: 4,
+            id: "ec6de4fe-1835-4abe-bdd8-7de45a7106dc",
             name: "name_1-2-1",
             email: "email_1-2-1",
             text: "Numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur! Nostrum quibusdam animi quo officia, soluta iste recusandae similique ipsum suscipit natus temficia, soluta iste recusandae similique ipsum suscipit natus tempora ea rem exercitationem amet doloremque sint nulla nisi eum debitis? Iste in autem nemo, animi sed laudant doloremque",
@@ -60,7 +60,7 @@ function App() {
     ]
   },
   {
-    id: 7,
+    id: "65414850-4d07-4108-8ae7-8ff67a2b26a8",
     name: "name_2",
     email: "email_2",
     text: "utem nemo, animi sed laudant Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ullam eum et sapiente alias sint dolor. Veritatis ad commodi facere accusantium sunt ex porro, molestiae, praesentium eaque ducimus velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci fuga doloribus tenetur blanditiis, ipsam quas tempo",
@@ -69,7 +69,7 @@ function App() {
     depthOfAnswers: 1,
     reply: [
       {
-        id: 8,
+        id: "25e59951-c1a7-4e19-ae6e-b7d78e140fb8",
         name: "name_2-1",
         email: "email_2-1",
         text: "qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat corrupti.",
@@ -78,7 +78,7 @@ function App() {
         depthOfAnswers: 2,
         reply: [
           {
-            id: 9,
+            id: "9dddfa51-3c4b-4fd5-83ba-14c87b654eb2",
             name: "name_2-1-1",
             email: "email_2-1-1",
             text: "inus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat cor",
@@ -91,7 +91,7 @@ function App() {
     ]
   },
   {
-    id: 445,
+    id: "ebd84928-5171-4feb-b94f-198f6f2ae1a5",
     name: "",
     email: "",
     text: "nimi sed laudant Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ullam eum et sapiente alias sint dolor. Veritatis ad commodi facere accusantium sunt ex porro, molestiae, praesentium eaque ducimus velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci fuga doloribus t",
@@ -100,7 +100,7 @@ function App() {
     depthOfAnswers: 1
   },
   {
-    id: 4e45,
+    id: "c327fa77-807b-4243-8f0d-4fbef0b35981",
     name: "",
     email: "",
     text: "inus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat cor",
