@@ -31,19 +31,14 @@ function CommentItem(props) {
     /* FIXME: удалить логи от отладки */
     if (timePassed > msInDay) {
       result = correctName(Math.round(timePassed / 60 / 60 / 1000 / 24), ["День", "Дня", "Дней"])
-      /*  console.log("Прошло: ", result) */
     } else if (timePassed > msInHour) {
       result = correctName(Math.round(timePassed / 60 / 60 / 1000), ["Час", "Часа", "Часов"])
-      /* console.log("Прошло: ", result) */
     } else if (timePassed > msInMinute) {
       result = correctName(Math.round(timePassed / 60 / 1000), ["Минуту", "Минуты", "Минут"])
-      /* console.log("Прошло: ", result) */
     } else {
       result = correctName(Math.round(timePassed / 1000), ["Секунду", "Секунды", "Секунд"])
-      /*  console.log("Прошло: ", result) */
+      /* NOTE: в требованиях не было указано про секунды, но они были добавлены для большей наглядности */
     }
-
-    /* TODO: вернуть ссылку на объект с временем и корректным текстом.*/
 
     function correctName(timePassed, titlesArr) {
 
@@ -64,21 +59,18 @@ function CommentItem(props) {
     }
     return `${result.timePassed} ${result.rest} назад` /* значение, подставляемое в поле даты публикации комментария */
   }
-  /* 
-    getReplayParent(2) */
+
 
   return (
     <div className={"comment"}>
       <div className="comment__author-avatar">
-        <img src={Avatar} alt={"props.author"} /> {/* TODO: заменить на действительный пропс */}
+        <img src={Avatar} alt={comment.name} /> 
       </div>
       <div className="comment__body">
         <div className="comment__top">
           <a href="#" className="comment__author">{comment.name}</a>
           <span className="comment__publication-date">{calcCommentDate(comment.publicationTime)}</span>
           <div className="comment__rating">
-            {/* TODO:  данные рейтинга*/}
-
             <Rating
               rating={comment.rating}
               commentId={comment.id}
@@ -86,8 +78,6 @@ function CommentItem(props) {
           </div>
 
           <button className="comment__reply-link" type="button" onClick={() => getReplayParent(comment.id)} >Ответить</button>
-
-
 
         </div>
 

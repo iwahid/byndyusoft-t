@@ -1,5 +1,7 @@
 .comment {
+  /* NOTE: стили для комментариев не адаптировал под мобильные устройства. Не сложно, но займёт дополнительное время. К тому же, такого требования не было  */
   display: flex;
+
   &__author-avatar {
     height: 10rem;
     min-width: 10rem;
@@ -17,9 +19,11 @@
     width: 100%;
     margin-bottom: 1.6rem;
   }
+
   &__author {
     display: block;
   }
+
   &__publication-date {
     /* NOTE: часто встречающийся элемент. Можно было бы унифицировать его, если бы он использовался в нескольких разных элементах. У даты публикации статьи и даты публикации комментария слабая семантическая связь. По этому их можно разделить в плане стилей */
     display: inline-block;
@@ -44,8 +48,9 @@
       text-decoration: none;
     }
   }
+
   &__show-text {
-    /* FIXME: одинаковые стили для нескольких элементов. Починить */
+    /* NOTE:  полагаю, что по дизайну, элементы "Ответить" и "Открыть комментарий" должны будут быть разными элементами. В макете этого продемонстрировано не было, по этому определил их как разные элементы, но дизайн оставил общим*/
     margin-left: auto;
     background-color: transparent;
     border: none;
@@ -53,23 +58,22 @@
 
     color: $color-accent;
     text-decoration: underline;
-    
+
     min-height: 7rem;
     text-align: start;
     &:hover {
       text-decoration: none;
     }
   }
+
   &__reply {
-    width: 100%; /* 
-    background-color: gray; */
+    width: 100%;
     margin-bottom: 2rem;
   }
 
   &__text {
     min-height: 7rem;
     margin-bottom: 2rem;
-
     line-height: 1.2;
   }
 }

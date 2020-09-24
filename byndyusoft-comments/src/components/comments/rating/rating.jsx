@@ -1,10 +1,7 @@
 import React from 'react'
 
 function Rating({ rating, commentId, updateCommentRating }) {
-  
-  function redd () {
-    console.log("================")
-  }
+ 
   return (
     /* могу не использовать доп. классы для внутренних элементов, поскольку внутренняя структура не вариативна. Проще определять через каскад & {} */
     <div className="rating">
