@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 import Rating from '../rating/rating'
 import Avatar from './assets/avatar.png'
 
+import CommentForm from './../../comment-form/form'
+
 function CommentItem(props) {
 
-  let { comment, updateCommentRating, getReplayParent } = props
+  let { comment, updateCommentRating, setReplyParent, updateCommentsList, replyParent } = props
 
   /* видимость по рейтингу */
   let [commentVisisble, setCommentVisisble] = useState(true)
@@ -91,13 +93,19 @@ function CommentItem(props) {
               </button>
               : ""}
 
-            {comment.depthOfAnswers < depthLimitation ? <button className="comment__reply-link" type="button" onClick={() => getReplayParent(comment.id)} >Ответить</button> : ""}
+            {comment.depthOfAnswers < depthLimitation ? <button className="comment__reply-link" type="button" onClick={() => setReplyParent(comment.id)} >Ответить</button> : ""}
 
           </div>
 
         </div>
 
         {commentVisisble ? <p className="comment__text">{comment.text}</p> : <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button>}
+
+        {replyParent == comment.id ?
+          <CommentForm
+            updateCommentsList={updateCommentsList}
+          ></CommentForm>
+          : ""}
 
         {/* рекурсивный рендер ответов на комментарий */}
         {answersVisible ? (
@@ -107,7 +115,10 @@ function CommentItem(props) {
                 <CommentItem
                   comment={comment}
                   updateCommentRating={updateCommentRating}
-                  getReplayParent={getReplayParent} />
+                  setReplyParent={setReplyParent}
+                  updateCommentsList={updateCommentsList}
+                  replyParent={replyParent}
+                />
 
               </div>)
             : ""

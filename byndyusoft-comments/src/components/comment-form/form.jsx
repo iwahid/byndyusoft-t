@@ -53,7 +53,7 @@ function Form(props) {
   function handleSubmit(event) {
 
     if (formIsValid.name && formIsValid.email && formIsValid.text) {
-      props.update(content)
+      props.updateCommentsList(content)
       /* очистка состояния формы и её состояния*/
       setFormIsValid({ name: false, email: false, text: false })
       setContent({ name: "", email: "", text: "", publicationTime: "" })

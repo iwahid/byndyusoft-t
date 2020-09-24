@@ -1,7 +1,8 @@
 import React from 'react'
 import CommentItem from '../commentItem/commentItem'
+import CommentForm from './../../comment-form/form'
 
-function CommentsList({ comments, updateCommentRating, getReplayParent }) {
+function CommentsList({ comments, updateCommentRating, setReplyParent, updateCommentsList, replyParent }) {
 
   return (
     <div className="comments-list">
@@ -11,10 +12,15 @@ function CommentsList({ comments, updateCommentRating, getReplayParent }) {
           <CommentItem
             comment={comment}
             updateCommentRating={updateCommentRating}
-            getReplayParent={getReplayParent}
+            setReplyParent={setReplyParent}
+            updateCommentsList={updateCommentsList} /* для формы */
+            replyParent={replyParent}
           ></CommentItem>
         )}
       </div>
+
+      {/* когда изначально комментарий пишется для статьи, а не в качестве ответа на уже существующий комментарий */}
+      {replyParent == 0 ? <CommentForm updateCommentsList={updateCommentsList}></CommentForm> : ""}
     </div>
   )
 }
