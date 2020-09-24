@@ -3,10 +3,6 @@ import CommentItem from '../commentItem/commentItem'
 
 function CommentsList({ comments, updateCommentRating, getReplayParent }) {
 
-  function myfunc(item) {
-    console.log(item)
-  }
-
   return (
     <div className="comments-list">
       <h3 className="comments-list__title">Комментарии:</h3>
@@ -18,7 +14,6 @@ function CommentsList({ comments, updateCommentRating, getReplayParent }) {
             getReplayParent={getReplayParent}
           ></CommentItem>
         )}
-
       </div>
     </div>
   )

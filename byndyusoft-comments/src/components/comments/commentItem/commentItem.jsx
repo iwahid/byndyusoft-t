@@ -10,12 +10,10 @@ function CommentItem(props) {
 
   useEffect(() => {
     ((-10 < comment.rating) ? setCommentVisisble(true) : setCommentVisisble(false))
-
   }, [comment.rating])
 
-
   /* Функция подсчёта времени, пройденного с момента публикации 
-     TODO: возможно, эту функцию стоит вынести в отдельный компонент*/
+     NOTE: возможно, эту функцию стоит вынести в отдельный компонент, но думаю это было бы лишним в рамках текущей задачи*/
 
   function calcCommentDate(time) {
 
@@ -60,11 +58,10 @@ function CommentItem(props) {
     return `${result.timePassed} ${result.rest} назад` /* значение, подставляемое в поле даты публикации комментария */
   }
 
-
   return (
     <div className={"comment"}>
       <div className="comment__author-avatar">
-        <img src={Avatar} alt={comment.name} /> 
+        <img src={Avatar} alt={comment.name} />
       </div>
       <div className="comment__body">
         <div className="comment__top">
@@ -81,7 +78,6 @@ function CommentItem(props) {
 
         </div>
 
-
         {commentVisisble ? <p className="comment__text">{comment.text}</p> : <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button>}
 
         {/* рекурсивный рендер ответов на комментарий */}
@@ -95,9 +91,6 @@ function CommentItem(props) {
 
             </div>)
           : ""}
-
-        {/* TODO: возможно, здесь нужно будет реализовать контейнер для ответов оставленных на этот коммент */}
-
       </div>
 
     </div>
