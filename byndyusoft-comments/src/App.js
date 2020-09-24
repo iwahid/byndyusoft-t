@@ -15,6 +15,7 @@ function App() {
     text: "Beatae recusandae nesciunt dolorum et, unde blanditiis, itaque voluptatem distinctio id sapiente deserunt consectetur exercitationem quo tempora vitae, est saepe nisi aliquid sunt magni repellendus voluptatum facilis ipsum voluptatibus. Magni, harum! Cumque, ea ipsa consequatur exercitationem, illum eaque velit at officia esse aperiam consectetur? ",
     publicationTime: 1600616401986,
     rating: 5,
+    depthOfAnswers:1,
     reply: [
       {
         id: 1,
@@ -23,6 +24,7 @@ function App() {
         text: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, ad explicabo? Recusandae porro impedit temporibus, perspiciatis animi ratione nesciunt aperiam libero vitae. Voluptatem suscipit provident cumque adipisci inventore commodi aspernatur. Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatummodi aspernatur. Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur!",
         publicationTime: 1600616401986,
         rating: 3,
+        depthOfAnswers:2,
         reply: [
           {
             id: 2,
@@ -30,7 +32,8 @@ function App() {
             email: "",
             text: "Repellat ducimus numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur! Nostrum quibusdam animi quo officia, soluta iste recusandae similique ipsum suscipit natus tempora ea rem exercitationem amet doloremque sint nulla nisi eum debitis? Iste in autem nemo, animi sed laudant",
             publicationTime: 1600616411986,
-            rating: 7
+            rating: 7,
+            depthOfAnswers:3
           }
         ]
       },
@@ -41,6 +44,7 @@ function App() {
         text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus deleniti natus doloribus run deserunt, ea quos et explicabo fugit impedit cumque voluptatem amet commodi a iste, quod suscipit alias minus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. ",
         publicationTime: 1600616401986,
         rating: 2,
+        depthOfAnswers:2,
         reply: [
           {
             id: 4,
@@ -49,6 +53,7 @@ function App() {
             text: "Numquam alias et ratione odio dolores quos error, vel, dolor mollitia id iusto nisi fugiat, cum obcaecati excepturi pariatur! Nostrum quibusdam animi quo officia, soluta iste recusandae similique ipsum suscipit natus temficia, soluta iste recusandae similique ipsum suscipit natus tempora ea rem exercitationem amet doloremque sint nulla nisi eum debitis? Iste in autem nemo, animi sed laudant doloremque",
             publicationTime: 1600616401986,
             rating: 7,
+            depthOfAnswers:3
           }
         ]
       }
@@ -61,6 +66,7 @@ function App() {
     text: "utem nemo, animi sed laudant Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ullam eum et sapiente alias sint dolor. Veritatis ad commodi facere accusantium sunt ex porro, molestiae, praesentium eaque ducimus velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci fuga doloribus tenetur blanditiis, ipsam quas tempo",
     publicationTime: 1600616401986,
     rating: 5,
+    depthOfAnswers:1,
     reply: [
       {
         id: 8,
@@ -69,6 +75,7 @@ function App() {
         text: "qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat corrupti.",
         publicationTime: 1600616401986,
         rating: 5,
+        depthOfAnswers:2,
         reply: [
           {
             id: 9,
@@ -77,6 +84,7 @@ function App() {
             text: "inus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat cor",
             publicationTime: 1600616401986,
             rating: 9,
+            depthOfAnswers:3
           }
         ]
       }
@@ -89,6 +97,7 @@ function App() {
     text: "nimi sed laudant Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ullam eum et sapiente alias sint dolor. Veritatis ad commodi facere accusantium sunt ex porro, molestiae, praesentium eaque ducimus velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem adipisci fuga doloribus t",
     publicationTime: 1600616401986,
     rating: 0,
+    depthOfAnswers:1
   },
   {
     id: 4e45,
@@ -97,6 +106,7 @@ function App() {
     text: "inus qui, reprehenderit incidunt temporibus hic minima? Ad placeat sapiente et nobis quas modi, omnis quos eum a repellendus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati exercitationem dignissimos reprehenderit eligendi excepturi ex nulla eius officiis eos esse cumque, reiciendis nesciunt earum aspernatur vero, officia vel, repellat cor",
     publicationTime: 1600616401986,
     rating: 0,
+    depthOfAnswers:1
   }])
 
   /* хук - ссылка на тот комментарий, к которому будет написан ответ */
@@ -125,8 +135,9 @@ function App() {
       (function func(temp) {
         for (let elem of temp) {
           if (elem["id"] == replyParent) {
-            if (!elem["reply"])
-              elem["reply"] = [] /* чекаю существуют ли уже ответы у текущего комментария. Если нет, то формирую список */
+            if (!elem["reply"])/* чекаю существуют ли уже ответы у текущего комментария. Если нет, то формирую список */
+              elem["reply"] = [] 
+            comment["depthOfAnswers"] = elem["depthOfAnswers"]+1 /* добавляю к комментарию глубину его вложенности на основе его родителя */
             elem["reply"].push(comment)
           } else if (elem['reply']) {
             func(elem['reply']);

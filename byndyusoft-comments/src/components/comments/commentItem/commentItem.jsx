@@ -6,7 +6,14 @@ import Avatar from './assets/avatar.png'
 function CommentItem(props) {
 
   let { comment, updateCommentRating, getReplayParent } = props
+
+  /* видимость по рейтингу */
   let [commentVisisble, setCommentVisisble] = useState(true)
+  /* сокрытие ответов */
+  let [answersVisible, setAnswersVisible] = useState(true)
+
+  {/* 4 - ограничение на уровень вложенности комментариев */ }
+  let depthLimitation = 4
 
   useEffect(() => {
     ((-10 < comment.rating) ? setCommentVisisble(true) : setCommentVisisble(false))
@@ -14,6 +21,9 @@ function CommentItem(props) {
 
   /* Функция подсчёта времени, пройденного с момента публикации 
      NOTE: возможно, эту функцию стоит вынести в отдельный компонент, но думаю это было бы лишним в рамках текущей задачи*/
+
+  setInterval(() => comment = { ...comment }, 2000);
+
 
   function calcCommentDate(time) {
 
@@ -74,23 +84,36 @@ function CommentItem(props) {
               updateCommentRating={updateCommentRating} />
           </div>
 
-          <button className="comment__reply-link" type="button" onClick={() => getReplayParent(comment.id)} >Ответить</button>
+          <div className="comment__action-controls">
+
+            {comment.depthOfAnswers < depthLimitation && comment.hasOwnProperty("reply")
+              ? <button className="comment__hide-answers" type="button" onClick={() => setAnswersVisible((answersVisible) => !answersVisible)}>{answersVisible ? "Скрыть ответы" : "Показать ответы"}
+              </button>
+              : ""}
+
+            {comment.depthOfAnswers < depthLimitation ? <button className="comment__reply-link" type="button" onClick={() => getReplayParent(comment.id)} >Ответить</button> : ""}
+
+          </div>
 
         </div>
 
         {commentVisisble ? <p className="comment__text">{comment.text}</p> : <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button>}
 
         {/* рекурсивный рендер ответов на комментарий */}
-        {comment.reply && comment.reply.length
-          ? comment.reply.map((comment) =>
-            <div className="comment__reply">
-              <CommentItem
-                comment={comment}
-                updateCommentRating={updateCommentRating}
-                getReplayParent={getReplayParent} />
+        {answersVisible ? (
+          comment.reply && comment.reply.length
+            ? comment.reply.map((comment) =>
+              <div className="comment__reply">
+                <CommentItem
+                  comment={comment}
+                  updateCommentRating={updateCommentRating}
+                  getReplayParent={getReplayParent} />
 
-            </div>)
-          : ""}
+              </div>)
+            : ""
+        ) :
+          ""}
+
       </div>
 
     </div>
