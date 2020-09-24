@@ -38,17 +38,16 @@ function CommentItem(props) {
 
     let result = {}
 
-    /* FIXME: удалить логи от отладки */
     if (timePassed > msInDay) {
-      result = correctName(Math.round(timePassed / 60 / 60 / 1000 / 24), ["День", "Дня", "Дней"])
+      result = correctName(Math.round(timePassed / 60 / 60 / 1000 / 24), ["день", "дня", "дней"])
     } else if (timePassed > msInHour) {
-      result = correctName(Math.round(timePassed / 60 / 60 / 1000), ["Час", "Часа", "Часов"])
-    } else if (timePassed > msInMinute) {
-      result = correctName(Math.round(timePassed / 60 / 1000), ["Минуту", "Минуты", "Минут"])
-    } else {
+      result = correctName(Math.round(timePassed / 60 / 60 / 1000), ["час", "часа", "часов"])
+    } else /* if (timePassed > msInMinute) */ { /* расскоментировать, что бы заработал отчёт секунд. + заменить ceil на round */
+      result = correctName(Math.ceil(timePassed / 60 / 1000), ["минуту", "минуты", "минут"])
+    } /* else {
       result = correctName(Math.round(timePassed / 1000), ["Секунду", "Секунды", "Секунд"])
-      /* NOTE: в требованиях не было указано про секунды, но они были добавлены для большей наглядности */
-    }
+      // NOTE: в требованиях не было указано про секунды, но они были добавлены на этапе разработки для большей наглядности
+    } */
 
     function correctName(timePassed, titlesArr) {
 
