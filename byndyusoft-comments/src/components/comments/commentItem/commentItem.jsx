@@ -2,12 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Rating from '../rating/rating'
 import Avatar from './assets/avatar.png'
-
 import CommentForm from './../../comment-form/form'
 
-function CommentItem(props) {
-
-  let { comment, updateCommentRating, setReplyParent, updateCommentsList, replyParent } = props
+ /** @description Подсчёт времени, пройденного с момента публикации комментария
+    * @param {number} time время публикации комментария в ms
+    * @returns {string} значение, подставляемое в поле даты публикации комментария 
+    */
+function CommentItem({ comment, updateCommentRating, setReplyParent, updateCommentsList, replyParent }) {
 
   /* видимость по рейтингу */
   let [commentVisisble, setCommentVisisble] = useState(true)
@@ -21,15 +22,13 @@ function CommentItem(props) {
     ((-10 < comment.rating) ? setCommentVisisble(true) : setCommentVisisble(false))
   }, [comment.rating])
 
-  /* Функция подсчёта времени, пройденного с момента публикации 
-     NOTE: возможно, эту функцию стоит вынести в отдельный компонент, но думаю это было бы лишним в рамках текущей задачи*/
-
-  setInterval(() => comment = { ...comment }, 2000);
-
-
+  /* NOTE: возможно, эту функцию стоит вынести в отдельный компонент, но думаю это было бы лишним в рамках текущей задачи*/
+  /** @description Подсчёт времени, пройденного с момента публикации комментария
+    * @param {number} time время публикации комментария в ms
+    * @returns {string} значение, подставляемое в поле даты публикации комментария 
+    */
   function calcCommentDate(time) {
 
-    /* определяю разницу между указанной датой публикации и текущим моментом */
     let timePassed = Date.now() - time
 
     let msInMinute = 60 * 1000
@@ -49,6 +48,10 @@ function CommentItem(props) {
       // NOTE: в требованиях не было указано про секунды, но они были добавлены на этапе разработки для большей наглядности
     } */
 
+    /** @description Подсчёт времени, пройденного с момента публикации комментария
+      * @param {number} timePassed дельта, разница во времени между текущим моментов и моментом публикации комментария
+      * @returns {array} массив слов, значения которого по условия подставляются в итоговое выражение. 
+      */
     function correctName(timePassed, titlesArr) {
 
       let rest = timePassed % 100
@@ -66,7 +69,7 @@ function CommentItem(props) {
       return result
 
     }
-    return `${result.timePassed} ${result.rest} назад` /* значение, подставляемое в поле даты публикации комментария */
+    return `${result.timePassed} ${result.rest} назад`
   }
 
   return (
@@ -91,11 +94,9 @@ function CommentItem(props) {
               ? <button className="comment__hide-answers" type="button" onClick={() => setAnswersVisible((answersVisible) => !answersVisible)}>{answersVisible ? "Скрыть ответы" : "Показать ответы"}
               </button>
               : ""}
-
             {comment.depthOfAnswers < depthLimitation ? <button className="comment__reply-link" type="button" onClick={() => setReplyParent(comment.id)} >Ответить</button> : ""}
 
           </div>
-
         </div>
 
         {commentVisisble ? <p className="comment__text">{comment.text}</p> : <button className="comment__show-text" onClick={() => setCommentVisisble(true)}>Открыть комментарий</button>}
@@ -107,8 +108,8 @@ function CommentItem(props) {
           : ""}
 
         {/* рекурсивный рендер ответов на комментарий */}
-        {answersVisible ? (
-          comment.reply && comment.reply.length
+        {answersVisible
+          ? (comment.reply && comment.reply.length
             ? comment.reply.map((comment) =>
               <div className="comment__reply">
                 <CommentItem
@@ -118,14 +119,11 @@ function CommentItem(props) {
                   updateCommentsList={updateCommentsList}
                   replyParent={replyParent}
                 />
-
               </div>)
             : ""
-        ) :
-          ""}
-
+          )
+          : ""}
       </div>
-
     </div>
   )
 }

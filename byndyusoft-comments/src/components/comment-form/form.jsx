@@ -6,13 +6,18 @@ function Form(props) {
   /* хук для создаваемого комментария */
   let [content, setContent] = useState({ name: "", email: "", text: "", publicationTime: "", rating: 0 })
 
-  /* управляемый компонент. Сохранение значений в стейте */
+  
+  /** @description Управляемый компонент. Сохранение содержимого формы в хуках
+   * @param {object} event произошедшее событие
+   * @param {string} key ключ, определяющий класс передаваемых данных (имя, email, текст комментария....)
+   */
   function handleChange(event, key) {
     let temp = { ...content }
     temp[key] = event.target.value
 
     /* запись о времени публикации комментария */
-    temp["publicationTime"] = Date.now() 
+    temp["publicationTime"] = Date.now()
+    /* генерация уникального id, в соответствии со стандартом RFC 4122 */
     temp["id"] = function (a, b) { for (b = a = ''; a++ < 36; b += a * 51 & 52 ? (a ^ 15 ? 8 ^ Math.random() * (a ^ 20 ? 16 : 4) : 4).toString(16) : '-'); return b }() /* уникальный id */
     temp["rating"] = 0
     setContent({ ...temp })
@@ -26,8 +31,12 @@ function Form(props) {
   /* хук состояния валидации всех инпутов форме */
   let [formIsValid, setFormIsValid] = useState({ name: false, email: false, text: false })
 
-  /* функция валидации формы */
+
   /* NOTE: функцию можно было бы вынести в отдельный файл, для того что бы импортировать её в отдельные компоненты (статьи, комментарии, посты и прочее). Но по ТЗ требуется только блок с комментариями. Выносить отдельно не стал */
+   /** @description Функция валидации формы
+   * @param {string} fieldId поле, требующее валидации
+   * @param {string} fieldValue значение в поле, проходящее валидацию
+   */
   function formValidate(fieldId, fieldValue) {
     switch (fieldId) {
       case 'author-name':
@@ -49,7 +58,9 @@ function Form(props) {
     }
   }
 
-  /* отправка формы (лишь имитирует отправку, но никуда ничего не отправляет, а только изменяет состояние) */
+  /** @description Отправка формы (лишь имитирует отправку, но никуда ничего не отправляет, а только изменяет состояние)
+   * @param {object} event событие отправки формы
+   */
   function handleSubmit(event) {
 
     if (formIsValid.name && formIsValid.email && formIsValid.text) {
