@@ -4,10 +4,10 @@ import Rating from '../rating/rating'
 import Avatar from './assets/avatar.png'
 import CommentForm from './../../comment-form/form'
 
- /** @description Подсчёт времени, пройденного с момента публикации комментария
-    * @param {number} time время публикации комментария в ms
-    * @returns {string} значение, подставляемое в поле даты публикации комментария 
-    */
+/** @description Подсчёт времени, пройденного с момента публикации комментария
+   * @param {number} time время публикации комментария в ms
+   * @returns {string} значение, подставляемое в поле даты публикации комментария 
+   */
 function CommentItem({ comment, updateCommentRating, setReplyParent, updateCommentsList, replyParent }) {
 
   /* видимость по рейтингу */
@@ -110,16 +110,18 @@ function CommentItem({ comment, updateCommentRating, setReplyParent, updateComme
         {/* рекурсивный рендер ответов на комментарий */}
         {answersVisible
           ? (comment.reply && comment.reply.length
-            ? comment.reply.map((comment) =>
-              <div className="comment__reply">
-                <CommentItem
-                  comment={comment}
-                  updateCommentRating={updateCommentRating}
-                  setReplyParent={setReplyParent}
-                  updateCommentsList={updateCommentsList}
-                  replyParent={replyParent}
-                />
-              </div>)
+            ? comment.reply.map((comment, index) =>
+              <ul key={index} className="comment__reply"> 
+                <li key={index+index}>
+                  <CommentItem
+                    comment={comment} 
+                    updateCommentRating={updateCommentRating}
+                    setReplyParent={setReplyParent}
+                    updateCommentsList={updateCommentsList}
+                    replyParent={replyParent}
+                  />
+                </li>
+              </ul>)
             : ""
           )
           : ""}

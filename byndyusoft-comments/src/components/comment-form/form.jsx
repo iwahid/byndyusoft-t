@@ -76,16 +76,16 @@ function Form(props) {
   return (
     <form className="add-comment" onSubmit={(event) => handleSubmit(event)}>
       <p className="add-comment__title">Добавить комментарий</p>
-      <div className="add-comment__field">
-        <label className="add-comment__label" for="author-name">Имя: </label>
+      <div className="add-comment__field"> 
+        <label className="add-comment__label" htmlFor="author-name">Имя: </label>
         <input type="text" id="author-name" value={content.name} onChange={(event) => handleChange(event, "name")} />
       </div>
       <div className="add-comment__field">
-        <label className="add-comment__label" for="author-email">E-mail</label>
+        <label className="add-comment__label" htmlFor="author-email">E-mail</label>
         <input type="text" id="author-email" value={content.email} onChange={(event) => handleChange(event, "email")} />
       </div>
-      <div className="add-comment__field">
-        <label className="add-comment__label" for="author-text">Текст комментария</label>
+      <div className="add-comment__field"> 
+        <label className="add-comment__label" htmlFor="author-text">Текст комментария</label>
         <textarea className="add-comment__textarea" id="author-text" rows="5" value={content.text} onChange={(event) => handleChange(event, "text")}></textarea> {/* габариты текстового поля можно задать как через атрибуты, так и в css */}
       </div>
       <input className="add-comment__submit" type="submit" value="Добавить комментарий" />

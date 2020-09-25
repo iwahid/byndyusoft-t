@@ -7,17 +7,19 @@ function CommentsList({ comments, updateCommentRating, setReplyParent, updateCom
   return (
     <div className="comments-list">
       <h3 className="comments-list__title">Комментарии:</h3>
-      <div className="comments-list__inner">
-        {comments.map((comment) =>
-          <CommentItem
-            comment={comment}
-            updateCommentRating={updateCommentRating}
-            setReplyParent={setReplyParent}
-            updateCommentsList={updateCommentsList} /* для формы */
-            replyParent={replyParent}
-          ></CommentItem>
+      <ul className="comments-list__inner">
+        {comments.map((comment, index) =>
+          <li key={index}> 
+            <CommentItem
+              comment={comment}  
+              updateCommentRating={updateCommentRating}
+              setReplyParent={setReplyParent}
+              updateCommentsList={updateCommentsList} /* для формы */
+              replyParent={replyParent}
+            ></CommentItem>
+          </li>
         )}
-      </div>
+      </ul>
 
       {/* когда изначально комментарий пишется для статьи, а не в качестве ответа на уже существующий комментарий */}
       {replyParent == 0 ? <CommentForm updateCommentsList={updateCommentsList}></CommentForm> : ""}
