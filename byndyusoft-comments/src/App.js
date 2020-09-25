@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 /* компоненты */
 import Article from './components/article/article'
-import Form from './components/comment-form/form';
 import CommentsList from './components/comments/commentsList/commentsList';
 
 function App() {
@@ -93,17 +92,13 @@ function App() {
   /* хук - ссылка на тот комментарий, к которому будет написан ответ */
   let [replyParent, setReplyParent] = useState(0)
 
-  /* колбек функция, передаваемая в кнопку "ответить", для привязки ответа к коментарию */
-  function getReplayParent(parentId) {
-    console.log("Id комментария выбранного для комментирования: ", parentId)
-    setReplyParent(parentId)
-  }
-
   /* Обновление списка комментариев для статьи */
   function updateComments(comment) {
 
+    /* копирую, а не мутирую объект для того, что бы в конце корректно оповестить react о произошедших изменениях */
     let temp = [...comments]
 
+    /* комментарий непосредственно к статье */
     if (replyParent == 0) {
       comment["depthOfAnswers"] = 1
       temp.push(comment)
@@ -111,6 +106,7 @@ function App() {
       return
     }
 
+    /* ответ на комментарий */
     updateCommentReply(replyParent)
 
     function updateCommentReply(replyParent) {
@@ -129,8 +125,7 @@ function App() {
     }
 
     setComments([...temp])
-
-    /* перенос формы ответа к концу статьи, после отправки любого комментария */
+    /* перенос формы ответа к концу списка комментариев, после отправки любого комментария */
     setReplyParent(0)
   }
 
